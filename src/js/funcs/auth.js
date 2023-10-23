@@ -1,4 +1,4 @@
-import {swalalert} from "./utils.js" 
+import {swalalert ,setTokenToLocalstorage} from "./utils.js" 
  const register =async () =>{
     const name=document.querySelector('#name');
     const family=document.querySelector('#family');
@@ -32,7 +32,9 @@ import {swalalert} from "./utils.js"
         swalalert('لطفا فیلد ها را پر کنید','error','باشه',()=>{})   
     }
  return res.json()})
- .then(result=>console.log(result))
+ .then(result=>{
+    return setTokenToLocalstorage('user',result)
+ })
     
 }
 

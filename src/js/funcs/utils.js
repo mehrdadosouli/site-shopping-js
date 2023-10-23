@@ -8,8 +8,22 @@ const swalalert=(title,icon,buttons,callback)=>{
       })
 }
 
-// 
+// getToken
+const getToken=(key)=>{
+   return JSON.parse(localStorage.getItem(key)).token
+}
 
 
+// set token to localstorage
+const setTokenToLocalstorage=(key,value)=>{
+    return localStorage.setItem(key,JSON.stringify({token:value.accessToken}))
+}
 
-export {swalalert}
+
+// get token from localstorage
+const getTokenFromLocalstorage=(key)=>{
+    return localStorage.getItem(key)
+}
+
+
+export {swalalert , getToken , setTokenToLocalstorage ,getTokenFromLocalstorage}
