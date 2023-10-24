@@ -9,8 +9,8 @@ const swalalert=(title,icon,buttons,callback)=>{
 }
 
 // getToken
-const getToken=(key)=>{
-   return JSON.parse(localStorage.getItem(key)).token
+const getToken=()=>{
+   return JSON.parse(localStorage.getItem('user')).token
 }
 
 
