@@ -1,4 +1,6 @@
-import {getInfoUser} from "./funcs/shared.js"
+import {getInfoUser ,menuTopBar ,getALlProductAndShow} from "./funcs/shared.js"
 window.addEventListener('load',()=>{
     getInfoUser()
+    menuTopBar()
+    getALlProductAndShow()
 })
