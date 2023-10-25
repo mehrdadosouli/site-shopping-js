@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="dependency/SwiperSlider/swiper.css">
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
+/>
     <title>Home</title>
   </head>
   <body>
@@ -23,11 +28,21 @@
       </div>   
     </div>
     <!-- all products -->
-    <h2 id="new_products__heading">New products</h2>
+    <h2 id="products__heading">New products</h2>
     <section class="new_products">
     </section>
 
-    <script src="./index.js" type="module"></script>
+    <!-- popular products -->
+    <h2 id="products__heading">popular products</h2>
+    <swiper-container class="mySwiper" pagination="true">
+    
+    </swiper-container>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
     <script type="module" src="./js/shared.js"></script>
+    <script src="./index.js"></script>
+    <script src="slider.js"></script>
+    <script src="dependency/SwiperSlider/swiper.js"></script>
+
   </body>
 </html>

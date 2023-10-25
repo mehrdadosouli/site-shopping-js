@@ -1,3 +1,4 @@
+@import 'swiper/css';
 .contain{
     display: flex;
     justify-content: space-between;
@@ -44,11 +45,11 @@
 }
 
 /* product */
-#new_products__heading{
+#products__heading{
     padding:1rem 2rem;
     background-color: rgb(207, 228, 235);
-    border-radius: 2rem;
-    margin: 1rem;
+    border-radius: 1rem;
+    margin:2rem 1rem;
     width: 15rem;
     font-weight: bold;
     color: rgb(73, 116, 67);
@@ -110,3 +111,11 @@
 .product_btn:hover{
     cursor: pointer;
 }
+
+/* swiper */
+
+.swiper-container {
+    width: 50%;
+    height: 50%;
+  }
+

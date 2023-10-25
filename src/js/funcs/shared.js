@@ -1,7 +1,9 @@
 import { getMe , isLogin } from "./auth.js"
+
+
 const info=document.querySelector('.left h3')
 const list=document.querySelector('.list') 
-const new_products=document.querySelector('.new_products') 
+
 const getInfoUser=()=>{
     const isUserLogin = isLogin()
     if(isUserLogin){
@@ -26,13 +28,17 @@ const menuTopBar=async()=>{
    });
 }
 
-// get all products
+// get all products and popular products
 
-const getALlProductAndShow=async()=>{
-    const data=await fetch('http://localhost:4000/v1/courses')
+const getALlProductAndShow=async(api,elem)=>{
+    
+    const elems=document.querySelector(`.${elem}`) 
+    const data=await fetch(`http://localhost:4000/v1/${api}`)
     const result =await data.json();
+
+    api=='courses' ? 
     result.map(course=>{
-        new_products.innerHTML+=`
+        elems.innerHTML+=`
             <div class="product">
                 <img src='http://localhost:4000/v1/${course.cover}' alt="">
                 <h4 class="title">${course.name}</h4>
@@ -51,8 +57,7 @@ const getALlProductAndShow=async()=>{
                          Array(course.courseAverageScore).fill(0).map(item=>
                         `<img src="photo/icon/icons8-star-16.png" alt="">`
                          ).join('')
-                    }             
-                                 
+                    }                          
                     </div>         
                     </div>
                     <div class="product_price">${course.price == 0 ? "رایگان" : course.price}</div>
@@ -60,6 +65,38 @@ const getALlProductAndShow=async()=>{
             </div>
         `
     })
+    :
+    result.map(course=>{
+        elems.innerHTML+=`
+        <swiper-slide>
+        <div class="product">
+        <img src='http://localhost:4000/v1/${course.cover}' alt="">
+        <h4 class="title">${course.name}</h4>
+        <div class="info_product">
+            <div class="info_product__right">
+                <img src="photo/icon/icons8-teacher-30.png" alt="">
+                <span>${course.creator}</span>
+            </div>
+            <div class="info_product__left">
+            ${
+                Array(5 - course.courseAverageScore).fill(0).map(item=>
+               `<img src="photo/icon/icons8-star-24.png" alt="">`
+                ).join('')
+           }
+            ${
+                 Array(course.courseAverageScore).fill(0).map(item=>
+                `<img src="photo/icon/icons8-star-16.png" alt="">`
+                 ).join('')
+            }                          
+            </div>         
+            </div>
+            <div class="product_price">${course.price == 0 ? "رایگان" : course.price}</div>
+            <button class="product_btn">اطلاعات بیشتر</button>
+    </div>
+    </swiper-slide>
+        `})
 
 }
+
+
 export {getInfoUser ,menuTopBar ,getALlProductAndShow}
