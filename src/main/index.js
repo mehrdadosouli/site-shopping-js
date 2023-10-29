@@ -42,24 +42,24 @@ const getALlProductAndShow=async(api,elem)=>{
       <div class="product">
       <img src='http://localhost:4000/courses/covers/${course.cover}' alt="">
       <h4 class="title">${course.name}</h4>
-      <div class="info_product">
-          <div class="info_product__right">
-              <img src="../photo/icon/icons8-teacher-30.png" alt="">
-              <span>${course.creator}</span>
-          </div>
-          <div class="info_product__left">
-          ${
-              Array(5 - course.courseAverageScore).fill(0).map(item=>
-             `<img src="../photo/icon/icons8-star-24.png" alt="">`
-              ).join('')
-         }
-          ${
-               Array(course.courseAverageScore).fill(0).map(item=>
-              `<img src="../photo/icon/icons8-star-16.png" alt="">`
-               ).join('')
-          }                          
-          </div>         
-          </div>
+                <div class="info_product">
+                    <div class="info_product__right">
+                        <img src="../photo/icon/icons8-teacher-30.png" alt="">
+                        <span>${course.creator}</span>
+                    </div>
+                    <div class="info_product__left">
+                    ${
+                        Array(5 - course.courseAverageScore).fill(0).map(item=>
+                        `<img src="../photo/icon/icons8-star-24.png" alt="">`
+                        ).join('')
+                    }
+                    ${
+                        Array(course.courseAverageScore).fill(0).map(item=>
+                        `<img src="../photo/icon/icons8-star-16.png" alt="">`
+                        ).join('')
+                    }                          
+                    </div>         
+                </div>
           <div class="product_price">${course.price == 0 ? "رایگان" : course.price}</div>
           <button class="product_btn">اطلاعات بیشتر</button>
   </div>
