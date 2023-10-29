@@ -32,10 +32,7 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
-@font-face {
-	font-family: 'iransans';
-	src: url('../dependency/font/IRANSans/IRANSans.ttf');
-}
+
 body {
 	line-height: 1.6;
 	font-size: 1rem;

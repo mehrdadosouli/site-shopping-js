@@ -25,5 +25,16 @@ const getTokenFromLocalstorage=(key)=>{
     return localStorage.getItem(key)
 }
 
+// geturlSearch
+const geturlSearch=(key)=>{
+  const urlparam= new URLSearchParams(window.location.search);
+  const result=urlparam.get(key).slice(15)
+  return result
+}
 
-export {swalalert , getToken , setTokenToLocalstorage ,getTokenFromLocalstorage}
+const getAndShowCategory=async(categoryName)=>{
+  const fetchData=await fetch(`http://localhost:4000/v1/courses/category/${categoryName}`)
+  const result=await fetchData.json()
+  return result
+}
+export { swalalert , getToken , setTokenToLocalstorage , getTokenFromLocalstorage , geturlSearch ,getAndShowCategory}
