@@ -1,38 +1,35 @@
-import {geturlSearch ,getAndShowCategory} from "../js/funcs/utils.js"
-const category=document.querySelector('.category')
+import {geturlSearch ,getAndShowCategory ,changeRowAndColumn ,fetchCategory} from "../js/funcs/utils.js"
+const category=document.querySelector('.category');
+const topbar_row=document.querySelector('.topbar_row');
+const topbar_column=document.querySelector('.topbar_column');
+const topbar_sort=document.querySelector('.topbar_sort');
+
 
 window.addEventListener('load',()=>{
     const resul=geturlSearch('cat')
-    getAndShowCategory(resul).then(response=>{
-        response.length ?
-        response.map(course=>{
-            // console.log(course);
-            category.insertAdjacentHTML('beforeend',`
-            
-                    <div class="product">
-                        <img src='http://localhost:4000/courses/covers/${course.cover}' alt="">
-                        <h4 class="title">${course.name}</h4>
-                                    <div class="info_product">
-                                        <div class="info_product__right">
-                                            <img src="../photo/icon/icons8-teacher-30.png" alt="">
-                                            <span>${course.creator}</span>
-                                        </div>      
-                                        <div class="info_product__left">
-                                            ${
-                                               Array(5 - course.courseAverageScore).fill(0).map(item=>`<img src="../photo/icon/icons8-star-24.png" alt=""/>`).join('')
-                                            }                          
-                                            ${
-                                               Array( course.courseAverageScore).fill(0).map(item=>`<img src="../photo/icon/icons8-star-16.png" alt=""/>`).join('')
-                                            }                          
-                                        </div>           
-                                    </div>
-                            <div class="product_price">${course.price == 0 ? "رایگان" : course.price}</div>
-                            <button class="product_btn">اطلاعات بیشتر</button>
-                    </div>
-            
-            `)
-           
+    fetchCategory(resul).then(data=>{
+        const fetchData=[...data]
+        getAndShowCategory(category,fetchData)
+        
+        topbar_column.addEventListener('click',()=>{
+            changeRowAndColumn('column',category,fetchData);
+            topbar_sort.value='column'
         })
-        : category.innerHTML=`<div class="notting_category"><h3>ایتمی موجود نمی باشد</h3></div>`
+
+        topbar_row.addEventListener('click',()=>{
+            changeRowAndColumn('row',category,fetchData);
+            topbar_sort.value='row'
+        })
+
+        topbar_sort.addEventListener('change',(e)=>{
+            if(e.target.value=='row'){
+                changeRowAndColumn('row',category,fetchData)
+            }
+            if(e.target.value=='column'){
+                changeRowAndColumn('column',category,fetchData)
+            }
+        })
     })
+    
+    
 })

@@ -203,3 +203,23 @@ swiper-container.mySwiper {
     align-items: center;
     padding: 1rem;
 }
+@media screen and (max-width:1200px) {
+  .right .menu_topbar .list .li{
+    padding: 0;
+    margin: 0.5rem 0.5rem;
+  }
+  .right .menu_topbar .list .li > a{
+    font-size: 0.85rem;
+  }
+  .right>img{
+    display: none;
+  }
+}
+@media screen and (max-width:990px) {
+  .right>img{
+    display: flex;
+  }
+  .menu_topbar{
+    display: none;
+  }
+}
