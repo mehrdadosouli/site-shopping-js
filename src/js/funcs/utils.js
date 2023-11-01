@@ -122,4 +122,11 @@ const sortCategory=(data,key)=>{
       break;
   }
 }
-export { swalalert , getToken , setTokenToLocalstorage , getTokenFromLocalstorage , geturlSearch ,getAndShowCategory ,changeRowAndColumn ,fetchCategory ,sortCategory}
+
+const searchInput=(data,valResult)=>{
+ const res= data.filter(item=>{ 
+    return (item.name.toLowerCase()).includes(valResult)
+  })
+  return res
+}
+export { swalalert , getToken , setTokenToLocalstorage , getTokenFromLocalstorage , geturlSearch ,getAndShowCategory ,changeRowAndColumn ,fetchCategory ,sortCategory,searchInput}
