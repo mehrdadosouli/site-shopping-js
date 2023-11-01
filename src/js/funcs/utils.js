@@ -98,4 +98,28 @@ const changeRowAndColumn=(locations,category,data)=>{
       getAndShowCategory(category,data)
     }
 }
-export { swalalert , getToken , setTokenToLocalstorage , getTokenFromLocalstorage , geturlSearch ,getAndShowCategory ,changeRowAndColumn ,fetchCategory}
+
+const sortCategory=(data,key)=>{
+  switch (key) {
+    case "مرتب سازی بر اساس امتیاز":
+      const result1=data.sort(function (a,b){return b.courseAverageScore - a.courseAverageScore})
+     return result1;
+    case "مرتب سازی بر اساس محبوبیت":
+      const result2=data.sort(function (a,b){return b.courseAverageScore - a.courseAverageScore})
+     return result2;
+    case "مرتب سازی بر اساس آخرین":
+    const result3=data.sort(function (a,b){return new Date(a.createdAt) - new Date(b.createdAt)})
+    console.log(result3);
+    return result3;
+    case "مرتب سازی بر اساس ارزان ترین":
+      const result4=data.sort(function (a,b){return (a.price) - (b.price)})
+     return result4;
+    case "مرتب سازی بر اساس گران تربن":
+      const result5=data.sort(function (a,b){return (b.price) - (a.price)})
+     return result5;
+
+    default:
+      break;
+  }
+}
+export { swalalert , getToken , setTokenToLocalstorage , getTokenFromLocalstorage , geturlSearch ,getAndShowCategory ,changeRowAndColumn ,fetchCategory ,sortCategory}
