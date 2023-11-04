@@ -58,7 +58,7 @@ const login = () => {
       console.log(response);
       if (response.status == 200) {
         swalalert("با موفقیت لاگین شدید", "success", "خانه", () => {
-          location.href = "/src/index.html";
+          location.href = "/src/main/index.html";
         });
       } else if (response.status == 400) {
         swalalert("ایمیل یا پسورد اشتباه است", "error", "ok", () => {});

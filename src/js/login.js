@@ -1,5 +1,3 @@
-
-
 import {login} from "./funcs/auth.js"
 const login__submit=document.querySelector('.login__submit');
 

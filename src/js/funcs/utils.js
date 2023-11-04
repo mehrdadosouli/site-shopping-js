@@ -28,7 +28,7 @@ const getTokenFromLocalstorage=(key)=>{
 // geturlSearch
 const geturlSearch=(key)=>{
   const urlparam= new URLSearchParams(window.location.search);
-  const result=urlparam.get(key).slice(15)
+  const result=urlparam.get(key)
   return result
 }
 
@@ -41,6 +41,7 @@ const getAndShowCategory=(category,response)=>{
   category.innerHTML="";
   response.length ?
   response.map(course=>{
+
       category.insertAdjacentHTML('beforeend',`
       
               <div class="product">
@@ -60,8 +61,8 @@ const getAndShowCategory=(category,response)=>{
                                       }                          
                                   </div>           
                               </div>
-                      <div class="product_price">${course.price == 0 ? "رایگان" : course.price}</div>
-                      <button class="product_btn">اطلاعات بیشتر</button>
+                  <div class="product_price">${course.price == 0 ? "رایگان" : course.price}</div>
+                  <button class="product_btn"><a href="/src/course/course.html?name=${course.shortName}">اطلاعات بیشتر</a></button>
               </div>
       
       `)
@@ -69,6 +70,7 @@ const getAndShowCategory=(category,response)=>{
   })
 
   : category.innerHTML=`<div class="notting_category"><h3>ایتمی موجود نمی باشد</h3></div>`
+  
 }
 
 const changeRowAndColumn=(locations,category,data)=>{
@@ -124,9 +126,21 @@ const sortCategory=(data,key)=>{
 }
 
 const searchInput=(data,valResult)=>{
- const res= data.filter(item=>{ 
+ const res= data.filter(item=>{  
     return (item.name.toLowerCase()).includes(valResult)
   })
   return res
 }
-export { swalalert , getToken , setTokenToLocalstorage , getTokenFromLocalstorage , geturlSearch ,getAndShowCategory ,changeRowAndColumn ,fetchCategory ,sortCategory,searchInput}
+
+const getAndShowCourses=async(url)=>{
+  const data=await fetch(`http://localhost:4000/v1/courses/${url}`,{
+          method:'GET',
+          headers:{
+            Authorization:`Bearer ${getToken()}`
+          }
+        })
+        const response=await data.json()
+        return response
+}
+export { swalalert , getToken , setTokenToLocalstorage , getTokenFromLocalstorage , geturlSearch ,getAndShowCategory ,
+  changeRowAndColumn ,fetchCategory ,sortCategory,searchInput ,getAndShowCourses}

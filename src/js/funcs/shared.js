@@ -8,11 +8,11 @@ const menu_right=document.querySelector('.menu_right')
 const getInfoUser=()=>{
     const isUserLogin = isLogin()
     if(isUserLogin){
-        getMe().then(data=>{
-            info.innerHTML=`<a href="#">${data.name}</a>`  
-        })
+    getMe().then(data=>{
+        info.innerHTML=`<a href="/src/login/login.html">${data.name}</a>`  
+    })
     }else{
-        info.innerHTML='<a href="./login/login.html">Login</a>'
+        info.innerHTML='<a href="/src/login/login.html">Login</a>'
     }
 }
 
