@@ -1,0 +1,25 @@
+.container{
+    display: flex;
+    width: 100%;
+    direction: rtl;
+}
+.index_item{
+    padding:0.3rem;
+    border: 1px solid gray;
+    border-radius: 45%;
+    margin-left: 0.5rem;
+}
+.heading{
+    margin-left: 1rem;
+}
+.left_side{
+    width: 65%;
+    border: 1px solid gray;
+}
+.right_side{
+    width: 30%;
+}
+video{
+    width: 100%;
+    height: auto;
+}

@@ -142,5 +142,20 @@ const getAndShowCourses=async(url)=>{
         const response=await data.json()
         return response
 }
+const getAndShowEpisode=async()=>{
+        const data=await fetch(`http://localhost:4000/v1/courses/sessions`)
+        const response=await data.json()
+        return response
+}
+const getAndShowSession=async(url,id)=>{
+        const data=await fetch(`http://localhost:4000/v1/courses/${url}/${id}`,{
+          method:'GET',
+          headers:{
+            Authorization:`Bearer ${getToken()}`
+          }
+        })
+        const response=await data.json()
+        return response
+}
 export { swalalert , getToken , setTokenToLocalstorage , getTokenFromLocalstorage , geturlSearch ,getAndShowCategory ,
-  changeRowAndColumn ,fetchCategory ,sortCategory,searchInput ,getAndShowCourses}
+  changeRowAndColumn ,fetchCategory ,sortCategory,searchInput ,getAndShowCourses ,getAndShowEpisode,getAndShowSession }

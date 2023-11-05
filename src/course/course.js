@@ -7,7 +7,6 @@ window.addEventListener('load',(e)=>{
     const url=geturlSearch('name')
 
     getAndShowCourses(url).then(data=>{
-        console.log(data);
         getAllClass('course-info__link').innerHTML='آموزش '+ data.categoryID.title;
         getAllClass('course-info__title').innerHTML=data.name;
         getAllClass('course-info__text').innerHTML=data.description;
@@ -17,7 +16,6 @@ window.addEventListener('load',(e)=>{
         getAllClass('techer-details__footer').innerHTML=data.description;
         getAllClass('techer-details__header-img').src="../photo/8.jpg";
         getAllClass('course-info__register-title').innerHTML=data.isUserRegisteredToThisCourse ? 'شما دانشجو ی دوره هستید' : `<span><a href="#">خرید دوره</a></span>`;
-        console.log(data.sessions.length);
         if(data.sessions.length){
         data.sessions.map((item,index)=>{
                 getAllClass('accordion').insertAdjacentHTML('beforeend',`<div class="accordion-item">
@@ -34,11 +32,11 @@ window.addEventListener('load',(e)=>{
                         ${
                             (item.free || item.isUserRegisteredToThisCourse) ?
                         
-                            `<a href="#" class="introduction__accordion-link">
+                            `<a href=${`/src/episode/episode.html?name=${data.shortName}&id=${item._id}`} class="introduction__accordion-link">
                                  ${item.title}
                             </a>`
                                 :
-                            `<span href="#" class="introduction__accordion-link">
+                            `<span class="introduction__accordion-link">
                                 ${item.title}
                             </span>`
                         }
