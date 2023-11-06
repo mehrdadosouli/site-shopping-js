@@ -1,4 +1,4 @@
-import {geturlSearch ,getAndShowCategory ,changeRowAndColumn ,fetchCategory ,sortCategory ,searchInput,swalalert} from "../js/funcs/utils.js"
+import {geturlSearch ,getAndShowCategory ,changeRowAndColumn ,fetchCategory ,sortCategory ,searchInput,swalalert ,pagination} from "../js/funcs/utils.js"
 const category=document.querySelector('.category');
 const topbar_row=document.querySelector('.topbar_row');
 const topbar_column=document.querySelector('.topbar_column');
@@ -35,5 +35,7 @@ window.addEventListener('load',()=>{
                 category.innerHTML=`<div class="notting_category"><h3>ایتمی موجود نمی باشد</h3></div>`
             }
         })
+
+        pagination(fetchData,3,category,1)
     })
 })

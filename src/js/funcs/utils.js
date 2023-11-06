@@ -72,7 +72,6 @@ const getAndShowCategory=(category,response)=>{
   : category.innerHTML=`<div class="notting_category"><h3>ایتمی موجود نمی باشد</h3></div>`
   
 }
-
 const changeRowAndColumn=(locations,category,data)=>{
     if(locations=='row'){
      category.innerHTML="";
@@ -100,7 +99,6 @@ const changeRowAndColumn=(locations,category,data)=>{
       getAndShowCategory(category,data)
     }
 }
-
 const sortCategory=(data,key)=>{
   switch (key) {
     case "مرتب سازی بر اساس امتیاز":
@@ -124,14 +122,12 @@ const sortCategory=(data,key)=>{
       break;
   }
 }
-
 const searchInput=(data,valResult)=>{
  const res= data.filter(item=>{  
     return (item.name.toLowerCase()).includes(valResult)
   })
   return res
 }
-
 const getAndShowCourses=async(url)=>{
   const data=await fetch(`http://localhost:4000/v1/courses/${url}`,{
           method:'GET',
@@ -157,5 +153,18 @@ const getAndShowSession=async(url,id)=>{
         const response=await data.json()
         return response
 }
+const pagination=(array,itempage,element,current)=>{
+  const allBtn=Math.ceil(array.length/itempage)
+  console.log(allBtn);
+  const endData=current * itempage;
+  const startData=endData / itempage;
+  array.slice(startData,endData)
+  array.map((item,index)=>{
+    console.log(item);
+    element.insertAdjacentHTML('beforeend',`<button>
+      ${allBtn}
+    </button>`)
+  })
+}
 export { swalalert , getToken , setTokenToLocalstorage , getTokenFromLocalstorage , geturlSearch ,getAndShowCategory ,
-  changeRowAndColumn ,fetchCategory ,sortCategory,searchInput ,getAndShowCourses ,getAndShowEpisode,getAndShowSession }
+  changeRowAndColumn ,fetchCategory ,sortCategory,searchInput ,getAndShowCourses ,getAndShowEpisode,getAndShowSession ,pagination}
