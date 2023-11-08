@@ -39,7 +39,7 @@ const getALllMenu=async()=>{
     menu_right.insertAdjacentHTML('beforeend',`
     <div class="menu">
         <ul>
-            <li><a href=/src/category/category-info.html?cat=${item.href}>${item.title}</a>
+            <li><a href=/src/category/category-info.html?cat=${item.href}&page=1>${item.title}</a>
                 ${item.submenus.length ? `<ul class='submenus'>${item.submenus.map(elem=>`<li><a href=${elem.href}>${elem.title}</a></li>`).join('')}</ul>` :''}
             </li>
         </ul>

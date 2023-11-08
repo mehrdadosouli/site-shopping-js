@@ -37,42 +37,58 @@ const fetchCategory=async(categoryName)=>{
   const response=await fetchData.json();
   return response
 }
+
+const pagination=(category,respons,itempage)=>{
+ const current=geturlSearch('page')
+  const element=document.querySelector('.pagination');
+    element.innerHTML="";
+    const endData=current * itempage;
+    const startData=endData - itempage;
+    const res=respons.length / itempage
+    for (let i = 1; i < res + 1; i++) {
+      element.insertAdjacentHTML('beforeend',`<button onclick=handler(event,${i})>
+        ${i}
+      </button>`)
+    }
+   return respons.slice(startData,endData)
+}
+
 const getAndShowCategory=(category,response)=>{
   category.innerHTML="";
-  response.length ?
-  response.map(course=>{
+      response.length ?
+      response.map((item)=>{
+          category.insertAdjacentHTML('beforeend',`
+                  <div class="product">
+                      <img src='http://localhost:4000/courses/covers/${item.cover}' alt="">
+                      <h4 class="title">${item.name}</h4>
+                                  <div class="info_product">
+                                      <div class="info_product__right">
+                                          <img src="../photo/icon/icons8-teacher-30.png" alt="">
+                                          <span>${item.creator}</span>
+                                      </div>      
+                                      <div class="info_product__left">
+                                          ${
+                                             Array(5 - item.courseAverageScore).fill(0).map(item=>`<img src="../photo/icon/icons8-star-24.png" alt=""/>`).join('')
+                                          }                          
+                                          ${
+                                             Array( item.courseAverageScore).fill(0).map(item=>`<img src="../photo/icon/icons8-star-16.png" alt=""/>`).join('')
+                                          }                          
+                                      </div>           
+                                  </div>
+                      <div class="product_price">${item.price == 0 ? "رایگان" : item.price}</div>
+                      <button class="product_btn"><a href="/src/course/course.html?name=${item.shortName}">اطلاعات بیشتر</a></button>
+                  </div>
+          `)      
 
-      category.insertAdjacentHTML('beforeend',`
       
-              <div class="product">
-                  <img src='http://localhost:4000/courses/covers/${course.cover}' alt="">
-                  <h4 class="title">${course.name}</h4>
-                              <div class="info_product">
-                                  <div class="info_product__right">
-                                      <img src="../photo/icon/icons8-teacher-30.png" alt="">
-                                      <span>${course.creator}</span>
-                                  </div>      
-                                  <div class="info_product__left">
-                                      ${
-                                         Array(5 - course.courseAverageScore).fill(0).map(item=>`<img src="../photo/icon/icons8-star-24.png" alt=""/>`).join('')
-                                      }                          
-                                      ${
-                                         Array( course.courseAverageScore).fill(0).map(item=>`<img src="../photo/icon/icons8-star-16.png" alt=""/>`).join('')
-                                      }                          
-                                  </div>           
-                              </div>
-                  <div class="product_price">${course.price == 0 ? "رایگان" : course.price}</div>
-                  <button class="product_btn"><a href="/src/course/course.html?name=${course.shortName}">اطلاعات بیشتر</a></button>
-              </div>
-      
-      `)
-     
-  })
+    })
+    : category.innerHTML=`<div class="notting_category"><h3>ایتمی موجود نمی باشد</h3></div>`   
+  }
 
-  : category.innerHTML=`<div class="notting_category"><h3>ایتمی موجود نمی باشد</h3></div>`
-  
-}
+ 
+
 const changeRowAndColumn=(locations,category,data)=>{
+  category.innerHTML="";
     if(locations=='row'){
      category.innerHTML="";
      data.map(course=>{
@@ -153,18 +169,6 @@ const getAndShowSession=async(url,id)=>{
         const response=await data.json()
         return response
 }
-const pagination=(array,itempage,element,current)=>{
-  const allBtn=Math.ceil(array.length/itempage)
-  console.log(allBtn);
-  const endData=current * itempage;
-  const startData=endData / itempage;
-  array.slice(startData,endData)
-  array.map((item,index)=>{
-    console.log(item);
-    element.insertAdjacentHTML('beforeend',`<button>
-      ${allBtn}
-    </button>`)
-  })
-}
+
 export { swalalert , getToken , setTokenToLocalstorage , getTokenFromLocalstorage , geturlSearch ,getAndShowCategory ,
   changeRowAndColumn ,fetchCategory ,sortCategory,searchInput ,getAndShowCourses ,getAndShowEpisode,getAndShowSession ,pagination}
